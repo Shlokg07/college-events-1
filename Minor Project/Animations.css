@@ -1,0 +1,572 @@
+/* Comprehensive Animations CSS for All Pages */
+/* Include this file in all HTML pages for consistent animations */
+
+/* ============================= */
+/* 1. PAGE LOAD ANIMATIONS */
+/* ============================= */
+
+/* Fade in animation for body */
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide down animation for header/banner */
+@keyframes slideDownHeader {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide up animation for content */
+@keyframes slideUpContent {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Zoom in animation */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotate in animation */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0);
+  }
+}
+
+/* ============================= */
+/* 2. ELEMENT ANIMATIONS */
+/* ============================= */
+
+/* Card animation */
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Button bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Glow animation for buttons */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+  }
+}
+
+/* Shimmer loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Wave animation */
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ============================= */
+/* 3. APPLY ANIMATIONS TO ELEMENTS */
+/* ============================= */
+
+/* Apply page load animation */
+body {
+  animation: fadeInPage 0.8s ease-in-out;
+}
+
+/* Navbar animation */
+nav,
+.navbar {
+  animation: slideDownHeader 0.6s ease-out;
+}
+
+/* Header/Banner animation */
+header,
+.banner,
+.header-section {
+  animation: slideDownHeader 0.8s ease-out;
+}
+
+/* Main content animation */
+main,
+.container,
+.content {
+  animation: slideUpContent 0.8s ease-out 0.2s both;
+}
+
+/* Card animations with stagger effect */
+.card {
+  animation: cardSlideIn 0.6s ease-out;
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.card:nth-child(n+7) {
+  animation-delay: 0.7s;
+}
+
+/* Stat card animations */
+.stat-card {
+  animation: zoomIn 0.6s ease-out;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Event card animations */
+.event-card,
+.event-item {
+  animation: slideUpContent 0.6s ease-out;
+}
+
+.event-card:nth-child(1),
+.event-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.event-card:nth-child(2),
+.event-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.event-card:nth-child(3),
+.event-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.event-card:nth-child(n+4),
+.event-item:nth-child(n+4) {
+  animation-delay: 0.4s;
+}
+
+/* Profile section animation */
+.profile-header,
+.profile-section {
+  animation: slideInLeft 0.7s ease-out;
+}
+
+/* Button animations */
+button,
+.btn,
+.btn-primary,
+.btn-secondary,
+.login-btn,
+.explore-btn {
+  animation: zoomIn 0.5s ease-out;
+  transition: all 0.3s ease;
+}
+
+/* Button hover animations */
+button:hover,
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.login-btn:hover,
+.explore-btn:hover {
+  animation: pulse 0.3s ease;
+}
+
+/* Input field animations */
+input,
+textarea,
+select {
+  animation: fadeInPage 0.5s ease-out;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  animation: pulse 0.4s ease;
+}
+
+/* Form animations */
+form {
+  animation: slideUpContent 0.8s ease-out;
+}
+
+.form-group {
+  animation: slideUpContent 0.6s ease-out;
+}
+
+.form-group:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.form-group:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.form-group:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.form-group:nth-child(n+4) {
+  animation-delay: 0.4s;
+}
+
+/* Modal/Dialog animation */
+.modal,
+.dialog,
+.popup {
+  animation: zoomIn 0.4s ease-out;
+}
+
+/* Navigation link animations */
+.nav-links a,
+.nav-menu a,
+.nav-link {
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-menu a:hover,
+.nav-link:hover {
+  transform: translateY(-3px);
+}
+
+/* Icon animations */
+.icon,
+[class*="icon-"] {
+  transition: all 0.3s ease;
+}
+
+.icon:hover,
+[class*="icon-"]:hover {
+  animation: rotateIn 0.4s ease;
+}
+
+/* Badge animation */
+.badge,
+.label,
+.tag {
+  animation: zoomIn 0.4s ease-out;
+}
+
+/* List item animations */
+.list-item,
+li {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.list-item:nth-child(1),
+li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.list-item:nth-child(2),
+li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.list-item:nth-child(3),
+li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.list-item:nth-child(n+4),
+li:nth-child(n+4) {
+  animation-delay: 0.4s;
+}
+
+/* ============================= */
+/* 4. INTERACTIVE ANIMATIONS */
+/* ============================= */
+
+/* Smooth transitions for all elements */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Card hover effect */
+.card:hover,
+.event-card:hover,
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Button interaction animations */
+button:active,
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================= */
+/* 5. LOAD STATE ANIMATIONS */
+/* ============================= */
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading,
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Skeleton loading animation */
+.skeleton {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 1000px 100%;
+}
+
+/* ============================= */
+/* 6. RESPONSIVE ANIMATIONS */
+/* ============================= */
+
+/* Reduce animations on mobile for better performance */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.5s !important;
+  }
+
+  .card:nth-child(n+4) {
+    animation-delay: 0.2s !important;
+  }
+
+  .event-card:nth-child(n+4),
+  .event-item:nth-child(n+4) {
+    animation-delay: 0.2s !important;
+  }
+
+  .form-group:nth-child(n+4) {
+    animation-delay: 0.2s !important;
+  }
+
+  .list-item:nth-child(n+4),
+  li:nth-child(n+4) {
+    animation-delay: 0.2s !important;
+  }
+}
+
+/* ============================= */
+/* 7. DARK MODE ANIMATION SUPPORT */
+/* ============================= */
+
+/* Smooth theme transition */
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark-mode {
+  animation: fadeInPage 0.4s ease-in-out;
+}
+
+/* ============================= */
+/* 8. SPECIAL ANIMATIONS */
+/* ============================= */
+
+/* Success animation */
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.success,
+.success-message {
+  animation: successPulse 0.6s ease;
+}
+
+/* Error animation */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.error,
+.error-message {
+  animation: shake 0.5s ease;
+}
+
+/* Fade out animation (for page transitions) */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ============================= */
+/* 9. SECTION ANIMATIONS */
+/* ============================= */
+
+section {
+  animation: slideUpContent 0.8s ease-out;
+}
+
+section:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+section:nth-of-type(2) {
+  animation-delay: 0.1s;
+}
+
+section:nth-of-type(3) {
+  animation-delay: 0.2s;
+}
+
+section:nth-of-type(n+4) {
+  animation-delay: 0.3s;
+}
+
+/* ============================= */
+/* 10. FOOTER ANIMATION */
+/* ============================= */
+
+footer {
+  animation: slideUpContent 0.8s ease-out;
+}

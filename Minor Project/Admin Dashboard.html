@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="Admin Dashboard.css">
+    <link rel="stylesheet" href="Global-Dark-Mode.css">
+    <link rel="stylesheet" href="Animations.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="Home Page.html" class="nav-logo">🎉 EventHub Admin</a>
+            <ul class="nav-menu">
+                <li><a href="Home Page.html">Home</a></li>
+                <li><a href="Admin Dashboard.html" class="active">Dashboard</a></li>
+                <li><a id="logoutBtn" href="#" onclick="adminDashboard.logout(); return false;" style="display:none;">Logout</a></li>
+                <li><a id="userNameBtn" href="Profile Dashboard.html" class="nav-user-name" style="display:none;"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>📊 Admin Dashboard</h1>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 class="stat-number" id="totalUsers">0</h3>
+                <p class="stat-label">Total Users</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number" id="totalEvents">0</h3>
+                <p class="stat-label">Total Events</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number" id="totalRegistrations">0</h3>
+                <p class="stat-label">Total Registrations</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number" id="systemHealth">✓</h3>
+                <p class="stat-label">System Health</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <button class="tab-button active" data-tab="overview">📈 Overview</button>
+            <button class="tab-button" data-tab="requests">📋 Organizer Requests</button>
+            <button class="tab-button" data-tab="users">👥 Manage Users</button>
+            <button class="tab-button" data-tab="events">🎯 Manage Events</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2>System Overview</h2>
+            
+            <div class="overview-grid">
+                <!-- Users by Role -->
+                <div class="chart-container">
+                    <h3>Users by Role</h3>
+                    <div id="usersByRole" class="chart-data">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Events by Category -->
+                <div class="chart-container">
+                    <h3>Events by Category</h3>
+                    <div id="eventsByCategory" class="chart-data">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Events by Status -->
+                <div class="chart-container">
+                    <h3>Events by Status</h3>
+                    <div id="eventsByStatus" class="chart-data">
+                        <div class="loading">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organizer Requests Tab -->
+        <div id="requests" class="tab-content">
+            <h2>Organizer Requests</h2>
+            <p style="color: #666; margin-bottom: 1rem;">Review and manage requests from students who want to become organizers.</p>
+            
+            <div class="management-controls">
+                <select id="requestStatusFilter" class="filter-select">
+                    <option value="">All Requests</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <button id="refreshRequestsBtn" class="btn-primary">🔄 Refresh</button>
+            </div>
+
+            <div id="requestsContainer" style="margin-top: 2rem;">
+                <div class="loading">Loading requests...</div>
+            </div>
+        </div>
+
+        <!-- Users Management Tab -->
+        <div id="users" class="tab-content">
+            <h2>Manage Users</h2>
+            
+            <div class="management-controls">
+                <input type="text" id="userSearch" placeholder="Search users..." class="search-input">
+                <select id="roleFilter" class="filter-select">
+                    <option value="">All Roles</option>
+                    <option value="student">Student</option>
+                    <option value="organizer">Organizer</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button id="searchUsersBtn" class="btn-primary">Search</button>
+            </div>
+
+            <table id="usersTable" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <tr><td colspan="5" style="text-align: center;">Loading...</td></tr>
+                </tbody>
+            </table>
+
+            <div id="usersPagination" class="pagination"></div>
+        </div>
+
+        <!-- Events Management Tab -->
+        <div id="events" class="tab-content">
+            <h2>Manage Events</h2>
+            
+            <div class="management-controls">
+                <input type="text" id="eventSearch" placeholder="Search events..." class="search-input">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Music">Music</option>
+                    <option value="Art">Art</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Business">Business</option>
+                </select>
+                <select id="eventStatusFilter" class="filter-select">
+                    <option value="">All Status</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+                <button id="searchEventsBtn" class="btn-primary">Search</button>
+            </div>
+
+            <table id="eventsTable" class="data-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Registrations</th>
+                        <th>Status</th>
+                        <th>Organizer</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="eventsTableBody">
+                    <tr><td colspan="7" style="text-align: center;">Loading...</td></tr>
+                </tbody>
+            </table>
+
+            <div id="eventsPagination" class="pagination"></div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="adminDashboard.closeModal()">&times;</span>
+            <h2>Edit User Role</h2>
+            <div class="form-group">
+                <label for="userNameDisplay">User:</label>
+                <p id="userNameDisplay" style="font-weight: bold;"></p>
+            </div>
+            <div class="form-group">
+                <label for="newUserRole">New Role:</label>
+                <select id="newUserRole">
+                    <option value="student">Student</option>
+                    <option value="organizer">Organizer</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button class="btn-primary" onclick="adminDashboard.saveUserRoleChange()">Save Changes</button>
+                <button class="btn-secondary" onclick="adminDashboard.closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Event Status Modal -->
+    <div id="editEventModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="adminDashboard.closeModal()">&times;</span>
+            <h2>Edit Event Status</h2>
+            <div class="form-group">
+                <label for="eventTitleDisplay">Event:</label>
+                <p id="eventTitleDisplay" style="font-weight: bold;"></p>
+            </div>
+            <div class="form-group">
+                <label for="newEventStatus">New Status:</label>
+                <select id="newEventStatus">
+                    <option value="upcoming">Upcoming</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="completed">Completed</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button class="btn-primary" onclick="adminDashboard.saveEventStatusChange()">Save Changes</button>
+                <button class="btn-secondary" onclick="adminDashboard.closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 College Events Portal Admin Panel. All rights reserved.</p>
+    </footer>
+
+    <script src="Dark-Mode.js"></script>
+    <script src="api-client.js"></script>
+    <script src="Admin Dashboard.js"></script>
+    <script src="Animations.js"></script>
+</body>
+</html>

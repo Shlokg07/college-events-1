@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details</title>
+  <link rel="stylesheet" href="Event Details.css">
+  <link rel="stylesheet" href="Global-Dark-Mode.css">
+  <link rel="stylesheet" href="Animations.css">
+</head>
+<body>
+  <header>
+    <a href="javascript:void(0);" class="back-arrow" onclick="history.back(); return false;">← Back</a>
+    <h1 id="eventTitle">Event Title</h1>
+    <p id="eventCategory">Event Category</p>
+  </header>
+
+  <div class="container">
+    <!-- Left Image Panel -->
+    <div id="imagePanel" class="image-panel"></div>
+
+    <!-- Right Content Panel -->
+    <div class="content-panel">
+      <h2>About This Event</h2>
+      <p id="eventDescription" style="font-size: 24px; line-height: 1.8;">Loading...</p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>📅 Date & Time</h3>
+          <p id="eventDateTime">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>📍 Venue</h3>
+          <p id="eventLocation">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>👥 Capacity</h3>
+          <p id="eventCapacity">Loading...</p>
+        </div>
+
+        <div class="card">
+          <h3>📝 Registration</h3>
+          <p id="registrationStatus">Loading...</p>
+          <div id="actionButtons" style="margin-top: 15px;"></div>
+        </div>
+      </div>
+
+      <!-- Organizer Information Section -->
+      <div class="organizer-section">
+        <div class="organizer-info">
+          <h3>👤 Organizer Information</h3>
+          <div class="organizer-details">
+            <div class="organizer-item">
+              <label>Name:</label>
+              <div id="organizerName" class="organizer-value">Loading...</div>
+            </div>
+            <div class="organizer-item">
+              <label>Email:</label>
+              <div id="organizerEmail" class="organizer-value">Loading...</div>
+            </div>
+          </div>
+          <div id="organizeActionButtons" style="margin-top: 15px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 College Events Portal</p>
+  </footer>
+
+  <script src="Dark-Mode.js"></script>
+  <script src="api-client.js"></script>
+  <script src="Event Details.js"></script>
+  <script src="Animations.js"></script>
+</body>
+</html>

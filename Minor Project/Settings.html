@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="Settings.css">
+  <link rel="stylesheet" href="Global-Dark-Mode.css">
+  <link rel="stylesheet" href="Animations.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">🎓 College Events Web App</div>
+    <ul class="nav-links">
+      <li><a href="Home Page.html">Home</a></li>
+      <li><a href="Event Search.html">Events</a></li>
+      <li><a href="About Page.html">About</a></li>
+      <li><a href="Contact Page.html">Contact</a></li>
+      <li><button class="login-btn" onclick="window.location.href='Login Page.html'">Login</button></li>
+    </ul>
+  </nav>
+
+  <!-- Settings Container -->
+  <div class="settings-container">
+    <div class="settings-header">
+      <a href="Home Page.html" class="back-link">← Back to Home</a>
+      <h1>⚙️ Settings</h1>
+      <p>Manage your profile and preferences</p>
+    </div>
+
+    <!-- Settings Sections -->
+    <div class="settings-content">
+      <!-- Appearance Settings -->
+      <section class="settings-section">
+        <h2>🎨 Appearance</h2>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h3>Dark Mode</h3>
+            <p>Toggle between light and dark theme</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Personal Information Section -->
+      <section class="settings-section">
+        <h2>👤 Personal Information</h2>
+        <div class="personal-info">
+          <div class="info-row">
+            <span class="label">Full Name:</span>
+            <span id="displayFullName" class="value">Loading...</span>
+            <span style="color: #999; font-size: 0.9em; margin-left: 10px;">🔒 Locked</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Email:</span>
+            <span id="displayEmail" class="value">Loading...</span>
+            <span style="color: #999; font-size: 0.9em; margin-left: 10px;">🔒 Locked</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Phone:</span>
+            <span id="displayPhone" class="value">Not provided</span>
+          </div>
+          <button class="edit-btn" onclick="openEditModal()">✏️ Edit Information</button>
+        </div>
+      </section>
+
+      <!-- Additional Details Section -->
+      <section class="settings-section">
+        <h2>📝 Additional Details</h2>
+        <div class="additional-details">
+          <div class="detail-item">
+            <label>Bio:</label>
+            <p id="displayBio" class="detail-value">No bio added yet</p>
+          </div>
+          <div class="detail-item">
+            <label>Department:</label>
+            <p id="displayDepartment" class="detail-value">No department added yet</p>
+          </div>
+          <div class="detail-item">
+            <label>Year of Study:</label>
+            <p id="displayYear" class="detail-value">No year specified</p>
+          </div>
+          <button class="edit-btn" onclick="openAddDetailsModal()">✏️ Add/Update Details</button>
+        </div>
+      </section>
+
+      <!-- Logout Section -->
+      <section class="settings-section danger-zone">
+        <h2>🚪 Account</h2>
+        <button class="logout-btn" onclick="handleLogout()">Logout</button>
+      </section>
+    </div>
+  </div>
+
+  <!-- Edit Personal Information Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeEditModal()">&times;</span>
+      <h2>Edit Personal Information</h2>
+      <div class="modal-warning-box">
+        <strong>ℹ️ Note:</strong> Your Full Name and Email are locked and cannot be changed. Contact an administrator if you need to update these fields.
+      </div>
+      <form>
+        <label for="editFullName">Full Name (Locked):</label>
+        <input type="text" id="editFullName" disabled><br><br>
+
+        <label for="editEmail">Email (Locked):</label>
+        <input type="email" id="editEmail" disabled><br><br>
+
+        <label for="editPhone">Phone:</label>
+        <input type="tel" id="editPhone"><br><br>
+
+        <button type="button" onclick="savePersonalInfo()">Save Changes</button>
+        <button type="button" class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add/Edit Additional Details Modal -->
+  <div id="addDetailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeAddDetailsModal()">&times;</span>
+      <h2>Add/Update Additional Details</h2>
+      <form>
+        <label for="editBio">Bio:</label>
+        <textarea id="editBio" rows="4" placeholder="Tell us about yourself..."></textarea><br><br>
+
+        <label for="editDepartment">Department:</label>
+        <input type="text" id="editDepartment" placeholder="e.g., Computer Science, Business"><br><br>
+
+        <label for="editYear">Year of Study:</label>
+        <select id="editYear">
+          <option value="">Select Year</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+          <option value="Other">Other</option>
+        </select><br><br>
+
+        <button type="button" onclick="saveAdditionalDetails()">Save Details</button>
+        <button type="button" class="cancel-btn" onclick="closeAddDetailsModal()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="Dark-Mode.js"></script>
+  <script src="api-client.js"></script>
+  <script src="Settings.js"></script>
+  <script src="Animations.js"></script>
+</body>
+</html>

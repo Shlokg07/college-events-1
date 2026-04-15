@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Events - Sign Up</title>
+  <link rel="stylesheet" href="Sign Up.css">
+  <link rel="stylesheet" href="Global-Dark-Mode.css">
+  <link rel="stylesheet" href="Animations.css">
+  <style>
+    /* Force light theme on Sign Up page - Remove dark mode class immediately */
+    body.dark-mode {
+      background-color: #ffffff !important;
+      color: #333333 !important;
+      --bg-primary: #ffffff !important;
+      --bg-secondary: #f5f5f5 !important;
+      --bg-tertiary: #ffffff !important;
+      --text-primary: #333333 !important;
+      --text-secondary: #666666 !important;
+      --text-tertiary: #999999 !important;
+      --border-color: #ddd !important;
+      --border-light: #eeeeee !important;
+      --card-bg: #ffffff !important;
+      --input-bg: #ffffff !important;
+      --input-text: #333333 !important;
+      --input-border: #cccccc !important;
+    }
+    
+    /* Light mode defaults */
+    body {
+      --bg-primary: #ffffff !important;
+      --bg-secondary: #f5f5f5 !important;
+      --bg-tertiary: #ffffff !important;
+      --text-primary: #333333 !important;
+      --text-secondary: #666666 !important;
+      --text-tertiary: #999999 !important;
+      --border-color: #ddd !important;
+      --border-light: #eeeeee !important;
+      --card-bg: #ffffff !important;
+      --input-bg: #ffffff !important;
+      --input-text: #333333 !important;
+      --input-border: #cccccc !important;
+    }
+  </style>
+  <script>
+    // Force light theme on Sign Up page - Maximum override
+    function forceLightTheme() {
+      document.documentElement.style.colorScheme = 'light';
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+    
+    // Force immediately
+    forceLightTheme();
+    
+    // Force again after a tiny delay to catch async operations
+    setTimeout(forceLightTheme, 10);
+    
+    // Continuous enforcement - check every 100ms
+    const enforcementInterval = setInterval(forceLightTheme, 100);
+    
+    // Watch for any attempts to add dark-mode class
+    const observer = new MutationObserver(function(mutations) {
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+        console.log('🚫 Blocked dark-mode class addition on Sign Up page');
+      }
+    });
+    
+    observer.observe(document.body, { 
+      attributes: true, 
+      attributeFilter: ['class'],
+      attributeOldValue: true 
+    });
+    
+    // Also force on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', forceLightTheme);
+    
+    // Override the toggleGlobalDarkMode function
+    window.toggleGlobalDarkMode = function() {
+      console.warn('⛔ Dark mode toggle is disabled on Sign Up page');
+      alert('❌ Dark mode is not available on the Sign Up page for security reasons.');
+      return false;
+    };
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Signup Panel -->
+    <div class="login-panel">
+      <h2>Create Your Account</h2>
+      <p>Sign up to discover and join campus events</p>
+
+      <input type="text" id="fullName" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="tel" id="phone" placeholder="Phone Number (optional)">
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+      <!-- Security Information Section -->
+      <div class="security-info">
+        <h3>🔐 Security Tips</h3>
+        <ul>
+          <li><strong>Strong Password:</strong> Use at least 8 characters with uppercase, lowercase, numbers, and symbols</li>
+          <li><strong>Unique Password:</strong> Don't reuse passwords from other accounts</li>
+          <li><strong>Never Share:</strong> Keep your login credentials confidential</li>
+          <li><strong>Secure Connection:</strong> Only access from trusted devices on secure networks</li>
+          <li><strong>Verify Email:</strong> Confirm your email address to secure your account</li>
+          <li><strong>Regular Updates:</strong> Change your password periodically for security</li>
+        </ul>
+        <p class="privacy-note">📋 <strong>Privacy Notice:</strong> Your data is encrypted and protected. We never share your personal information with third parties.</p>
+      </div>
+
+      <button onclick="signup()">Sign Up</button>
+
+      <div class="links">
+        Already have an account? <a href="Login Page.html">Login ></a>
+      </div>
+    </div>
+
+    <!-- Right Events Panel -->
+    <div class="events-panel">
+      <h1>Welcome to College Events Portal!</h1>
+      <p>Discover and Join Exciting Campus Events!</p>
+      <button class="explore-btn" onclick="window.location.href='Home Page.html'">Explore Events</button>
+      <div class="event-options">
+        <div class="event-card">
+          <h3>Upcoming Events</h3>
+          <p>Check out the latest events on campus</p>
+        </div>
+        <div class="event-card">
+          <h3>My Registrations</h3>
+          <p>View and manage your event sign-ups</p>
+        </div>
+        <div class="event-card">
+          <h3>Organize an Event</h3>
+          <p>Create and manage your own event</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMPORTANT: Dark-Mode.js intentionally NOT loaded on Sign Up Page to keep it light-only -->
+  <!-- <script src="Dark-Mode.js"></script> -->
+  <script src="api-client.js"></script>
+  <script src="Sign Up.js"></script>  <script src="Animations.js"></script></body>
+</html>
