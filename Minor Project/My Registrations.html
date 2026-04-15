@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Registrations</title>
+  <link rel="stylesheet" href="Event Page.css">
+  <link rel="stylesheet" href="Global-Dark-Mode.css">
+  <link rel="stylesheet" href="Animations.css">
+  <style>
+    .registrations-header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+    }
+
+    .registrations-header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .registrations-header p {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin: 20px;
+      padding: 10px 15px;
+      background: var(--button-green);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+      width: fit-content;
+    }
+
+    .back-link:hover {
+      background: var(--button-green-hover);
+    }
+
+    .no-registrations {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+    }
+
+    .no-registrations h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .no-registrations p {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .browse-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--button-green);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .browse-btn:hover {
+      background: var(--button-green-hover);
+    }
+
+    .cancel-registration-btn {
+      background: var(--button-green) !important;
+      padding: 16px !important;
+      border: none !important;
+      color: white !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      transition: background 0.3s !important;
+      font-size: 22px !important;
+      font-weight: bold !important;
+      flex: 1;
+      min-width: 100px;
+      max-width: 300px;
+    }
+
+    .cancel-registration-btn:hover {
+      background: var(--button-green-hover);
+    }
+
+    .event-info {
+      color: var(--text-primary);
+      background: var(--card-bg);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .event-info > div:first-child {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .event-info h3 {
+      color: var(--text-primary);
+      margin: 0 0 12px 0;
+      font-size: 36px;
+    }
+
+    .event-info p {
+      color: var(--text-primary);
+      margin: 6px 0;
+      font-size: 26px;
+    }
+
+    .event-info strong {
+      color: var(--text-primary);
+    }
+
+    .learn-more-btn {
+      background: var(--button-primary) !important;
+      color: white !important;
+      padding: 16px !important;
+      border: none !important;
+      border-radius: 6px !important;
+      cursor: pointer !important;
+      font-size: 22px !important;
+      font-weight: bold !important;
+      transition: background 0.3s !important;
+      flex: 1;
+      min-width: 100px !important;
+      max-width: 300px !important;
+    }
+
+    .learn-more-btn:hover {
+      background: var(--button-hover) !important;
+    }
+
+    #userNameBtn {
+      background: white !important;
+      color: #3556eb !important;
+      display: inline-block !important;
+      padding: 8px 15px !important;
+      border-radius: 5px !important;
+      font-weight: bold !important;
+      text-decoration: none !important;
+    }
+
+    #userNameBtn:hover {
+      background: #f0f0f0 !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">🎓 College Events Web App</div>
+    <ul class="nav-links">
+      <li><a href="Home Page.html">Home</a></li>
+      <li><a href="Event Search.html">Events</a></li>
+      <li><a href="About Page.html">About</a></li>
+      <li><a href="Contact Page.html">Contact</a></li>
+      <li><button id="logoutBtn" class="login-btn" onclick="handleLogoutClick()" style="display:none;">Logout</button></li>
+      <li><a id="userNameBtn" href="Profile Dashboard.html" class="login-btn" style="display:none;"></a></li>
+      <li><button class="login-btn" onclick="window.location.href='Login Page.html'">Login</button></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <div class="registrations-header">
+    <h1>📋 My Registrations</h1>
+    <p>View and manage your registered events</p>
+  </div>
+
+  <!-- Back Link -->
+  <a href="Home Page.html" class="back-link">← Back to Home</a>
+
+  <!-- Main Content -->
+  <div class="events-container">
+    <div id="registrationsGrid" class="events-grid">
+      <p style="text-align: center; width: 100%; color: var(--text-secondary); padding: 40px;">Loading your registrations...</p>
+    </div>
+  </div>
+
+  <!-- No Registrations Message -->
+  <div id="noRegistrations" class="no-registrations" style="display: none;">
+    <h2>You haven't registered for any events yet</h2>
+    <p>Explore upcoming events and register to join!</p>
+    <a href="Event Search.html" class="browse-btn">Browse Events</a>
+  </div>
+
+  <script src="Dark-Mode.js"></script>
+  <script src="api-client.js"></script>
+  <script src="My Registrations.js"></script>
+  <script src="Animations.js"></script>
+</body>
+</html>

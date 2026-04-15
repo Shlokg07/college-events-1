@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Dashboard</title>
+    <link rel="stylesheet" href="Profile Dashboard.css">
+    <link rel="stylesheet" href="Global-Dark-Mode.css">
+    <link rel="stylesheet" href="Animations.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="Home Page.html" class="nav-logo">🎉 EventHub</a>
+            <ul class="nav-menu">
+                <li><a href="Home Page.html">Home</a></li>
+                <li><a href="Event Search.html">Events</a></li>
+                <li><a href="My Registrations.html">My Events</a></li>
+                <li><a href="Profile Dashboard.html" class="active">👤</a></li>
+                <li><a id="logoutBtn" href="#" onclick="profileDashboard.logout(); return false;" style="display:none;">Logout</a></li>
+                <li><a id="userNameBtn" href="Profile Dashboard.html" class="nav-user-name" style="display:none;"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <span id="avatarInitial">U</span>
+            </div>
+            <div class="profile-info">
+                <h1 id="userName">User Name</h1>
+                <p id="userRole" class="user-role">Student</p>
+                <p id="userEmail" class="user-email">user@example.com</p>
+            </div>
+            <div class="button-group">
+                <button id="editProfileBtn" class="btn-primary btn-edit">Edit Profile</button>
+                <button id="themeToggleBtn" class="btn-secondary btn-theme">🌙 Dark Mode</button>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 class="stat-number" id="registeredCount">0</h3>
+                <p class="stat-label">Total Registered</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number" id="upcomingCount">0</h3>
+                <p class="stat-label">Upcoming Events</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number" id="organizedCount">0</h3>
+                <p class="stat-label">Events Organized</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-number" id="completedCount">0</h3>
+                <p class="stat-label">Completed</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <button class="tab-button active" data-tab="registered">📅 Registered Events</button>
+            <button class="tab-button" data-tab="organized">🎯 Organized Events</button>
+            <button class="tab-button" data-tab="profile">👤 Profile Details</button>
+        </div>
+
+        <!-- Tab Contents -->
+        
+        <!-- Registered Events Tab -->
+        <div id="registered" class="tab-content active">
+            <h2>My Registered Events</h2>
+            <div id="registeredEventsList" class="events-grid"></div>
+        </div>
+
+        <!-- Organized Events Tab -->
+        <div id="organized" class="tab-content">
+            <h2>Events I Organize</h2>
+            <button class="btn-primary btn-create" onclick="profileDashboard.showCreateEventForm()">+ Create New Event</button>
+            <div id="organizedEventsList" class="events-grid"></div>
+        </div>
+
+        <!-- Profile Details Tab -->
+        <div id="profile" class="tab-content">
+            <h2>Profile Information</h2>
+            <div class="profile-form" id="profileForm" style="display: none;">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <input type="text" id="department" placeholder="Enter your department">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <select id="year">
+                        <option value="">Select Year</option>
+                        <option value="1st">1st Year</option>
+                        <option value="2nd">2nd Year</option>
+                        <option value="3rd">3rd Year</option>
+                        <option value="4th">4th Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" placeholder="Tell us about yourself" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-primary" onclick="profileDashboard.saveProfile()">Save Changes</button>
+                    <button class="btn-secondary" onclick="profileDashboard.cancelEdit()">Cancel</button>
+                </div>
+            </div>
+
+            <div id="profileDisplay" class="profile-details">
+                <div class="detail-item">
+                    <span class="detail-label">Email:</span>
+                    <span id="displayEmail" class="detail-value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Phone:</span>
+                    <span id="displayPhone" class="detail-value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Department:</span>
+                    <span id="displayDepartment" class="detail-value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Year:</span>
+                    <span id="displayYear" class="detail-value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Bio:</span>
+                    <span id="displayBio" class="detail-value">-</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Member Since:</span>
+                    <span id="displayJoined" class="detail-value">-</span>
+                </div>
+                
+                <!-- Request to be Organizer Section for Students -->
+                <div id="organizerRequestSection" class="organizer-request-section">
+                    <h3>Become an Organizer</h3>
+                    <p>Interested in organizing events? Submit a request to become an organizer and our admin team will review it.</p>
+                    <div id="requestStatus" class="request-status"></div>
+                    <button id="requestOrganizerBtn" class="btn-primary" onclick="profileDashboard.requestOrganizerRole()">📝 Request to be Organizer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="profileDashboard.closeModal()">&times;</span>
+            <h2>Edit Profile</h2>
+            <div class="profile-form">
+                <div class="form-group">
+                    <label for="editFullName">Full Name</label>
+                    <input type="text" id="editFullName" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Phone Number</label>
+                    <input type="tel" id="editPhone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="editDepartment">Department</label>
+                    <input type="text" id="editDepartment" placeholder="Enter your department">
+                </div>
+                <div class="form-group">
+                    <label for="editYear">Year</label>
+                    <select id="editYear">
+                        <option value="">Select Year</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editBio">Bio</label>
+                    <textarea id="editBio" placeholder="Tell us about yourself" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-primary" onclick="profileDashboard.saveProfileChanges()">Save Changes</button>
+                    <button class="btn-secondary" onclick="profileDashboard.closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <button id="footerLogoutBtn" class="btn-danger btn-logout">Logout</button>
+        <p>&copy; 2024 College Events Portal. All rights reserved.</p>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script src="Profile Dashboard.js"></script>
+    <script src="Animations.js"></script>
+</body>
+</html>

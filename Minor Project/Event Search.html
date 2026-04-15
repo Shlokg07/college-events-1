@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - College Events Portal</title>
+    <link rel="stylesheet" href="Event Search.css">
+    <link rel="stylesheet" href="Global-Dark-Mode.css">
+    <link rel="stylesheet" href="Animations.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="Home Page.html" class="nav-logo">🎉 EventHub</a>
+            <ul class="nav-menu">
+                <li><a href="Home Page.html">Home</a></li>
+                <li><a href="Event Search.html" class="active">Events</a></li>
+                <li><a href="My Registrations.html">My Events</a></li>
+                <li><a id="logoutBtn" href="#" onclick="eventSearch.logout(); return false;" style="display:none;">Logout</a></li>
+                <li><a id="userNameBtn" href="Profile Dashboard.html" class="nav-user-name" style="display:none;"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>🎉 Events</h1>
+        
+        <div class="search-section">
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search events by title, description..."
+                    class="search-input"
+                >
+                <button id="searchBtn" class="btn-primary">Search</button>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Music">Music</option>
+                        <option value="Art">Art</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Business">Business</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="locationFilter">Location</label>
+                    <input 
+                        type="text" 
+                        id="locationFilter" 
+                        placeholder="Enter location..."
+                    >
+                </div>
+
+                <div class="filter-group">
+                    <label for="dateFromFilter">From Date</label>
+                    <input 
+                        type="date" 
+                        id="dateFromFilter"
+                    >
+                </div>
+
+                <div class="filter-group">
+                    <label for="dateToFilter">To Date</label>
+                    <input 
+                        type="date" 
+                        id="dateToFilter"
+                    >
+                </div>
+
+                <div class="filter-group">
+                    <label for="statusFilter">Status</label>
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="ongoing">Ongoing</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortBy">Sort By</label>
+                    <select id="sortBy">
+                        <option value="date">Date (Nearest)</option>
+                        <option value="title">Title (A-Z)</option>
+                        <option value="registeredCount">Popularity</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <button id="applyFiltersBtn" class="btn-primary">Apply Filters</button>
+                <button id="clearFiltersBtn" class="btn-secondary">Clear All</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section">
+            <h2>Events <span id="resultCount">(0)</span></h2>
+            
+            <div id="eventsList" class="events-grid">
+                <!-- Events will be loaded here -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="paginationContainer" class="pagination" style="display: none;">
+                <button id="prevBtn" class="btn-page" disabled>Previous</button>
+                <span id="pageInfo">Page 1</span>
+                <button id="nextBtn" class="btn-page">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 College Events Portal. All rights reserved.</p>
+    </footer>
+
+    <script src="Dark-Mode.js"></script>
+    <script src="api-client.js"></script>
+    <script src="Event Search.js"></script>
+    <script src="Animations.js"></script>
+</body>
+</html>

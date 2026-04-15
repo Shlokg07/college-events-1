@@ -1,0 +1,140 @@
+/* CSS Variables for Dark Mode Support */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --panel-bg: #ffffff;
+  --border-color: #ddd;
+}
+
+body.dark-mode {
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --panel-bg: #2d2d2d;
+  --border-color: #444;
+}
+
+/* General Page Styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Left Panel (Contact Info) */
+.contact-panel {
+  flex: 1;
+  background-color: var(--panel-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: flex-start;
+  padding: 40px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.contact-panel h2 {
+  margin-bottom: 30px;
+  color: var(--text-primary);
+  font-size: 50px;
+}
+
+.contact-info {
+  font-size: 26px;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.contact-info strong {
+  color: #007bff;
+}
+
+.contact-image {
+  margin-top: 200px;
+  width: 700px;
+  border-radius: 8px;
+}
+
+/* Right Panel (Events Theme) */
+.events-panel {
+  flex: 2;
+  background: url('College.jpg') no-repeat center center/cover;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.events-panel h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.events-panel p {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.events-panel .explore-btn {
+  padding: 20px 35px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.events-panel .explore-btn:hover {
+  background-color: #1e7e34;
+}
+
+.events-panel .home-btn {
+  padding: 20px 35px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.events-panel .home-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .contact-panel, .events-panel {
+    flex: none;
+    width: 100%;
+    height: auto;
+    box-shadow: none;
+  }
+}

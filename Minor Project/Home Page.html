@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎓 College Events Portal</title>
+  <link rel="stylesheet" href="Home Page.css">
+  <link rel="stylesheet" href="Global-Dark-Mode.css">
+  <link rel="stylesheet" href="Animations.css">
+</head>
+<body>
+  <!-- Wrap all main content -->
+  <div id="mainContent">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">🎓 College Events Web App</div>
+      <ul class="nav-links">
+        <li><a href="Home Page.html">Home</a></li>
+        <li><a href="Event Search.html">Events</a></li>
+        <li><a href="Calendar View.html">📅 Calendar</a></li>
+        <li id="adminLink" style="display:none;"><a href="Admin Dashboard.html">⚙️ Admin</a></li>
+        <li><a href="About Page.html">About</a></li>
+        <li><a href="Contact Page.html">Contact</a></li>
+        <li id="loginBtn"><button class="login-btn" onclick="window.location.href='Login Page.html'">Login</button></li>
+        <li id="userNameBtn" style="display:none;"><a href="Profile Dashboard.html" class="nav-user-name"></a></li>
+      </ul>
+    </nav>
+
+    <!-- Banner Section -->
+    <header class="banner">
+      <h1>Welcome to College Events Portal!</h1>
+      <p>Discover and Join Exciting Campus Events!</p>
+      <button class="explore-btn" onclick="window.location.href='Event Search.html'">Explore Events</button>
+    </header>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+      <div class="card" onclick="window.location.href='Event Search.html'">
+        <div style="font-size: 3.5rem; text-align: center; width: 100%; margin-bottom: 15px; transition: transform 0.3s ease;">🎯</div>
+        <h3>Filter Events</h3>
+        <p>Search, filter, and browse events by category, location, date, and more.</p>
+      </div>
+      <div class="card" onclick="window.location.href='Calendar View.html'">
+        <div style="font-size: 3.5rem; text-align: center; width: 100%; margin-bottom: 15px; transition: transform 0.3s ease;">📅</div>
+        <h3>Calendar View</h3>
+        <p>Browse events on an interactive monthly calendar.</p>
+      </div>
+      <div class="card" onclick="window.location.href='Profile Dashboard.html'">
+        <div style="font-size: 3.5rem; text-align: center; width: 100%; margin-bottom: 15px; transition: transform 0.3s ease;">👤</div>
+        <h3>My Profile</h3>
+        <p>View your registered events and manage your profile.</p>
+      </div>
+      <div class="card" onclick="window.location.href='My Registrations.html'">
+        <div style="font-size: 3.5rem; text-align: center; width: 100%; margin-bottom: 15px; transition: transform 0.3s ease;">📋</div>
+        <h3>My Registrations</h3>
+        <p>View and manage your event registrations.</p>
+      </div>
+      <div id="organizeEventCard" class="card" onclick="openModal()">
+        <div style="font-size: 3.5rem; text-align: center; width: 100%; margin-bottom: 15px; transition: transform 0.3s ease;">✏️</div>
+        <h3>Organize Event</h3>
+        <p>Create and manage your own event.</p>
+      </div>
+      <div id="adminCardContainer" style="display:none;">
+        <div class="card" onclick="window.location.href='Admin Dashboard.html'">
+          <div style="font-size: 3.5rem; text-align: center; width: 100%; margin-bottom: 15px; transition: transform 0.3s ease;">⚙️</div>
+          <h3>Admin Dashboard</h3>
+          <p>Manage users, events, and system statistics.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Events -->
+    <section class="featured">
+      <h2>Featured Events</h2>
+      <p>Don't Miss These Exciting Events!</p>
+      <div class="event-grid" id="featuredEventsGrid">
+        <p style="text-align: center; width: 100%; color: #999;">Loading upcoming events...</p>
+      </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <footer class="subscribe">
+      <h2>Stay Updated!</h2>
+      <p>Subscribe to get the latest event updates</p>
+      <input type="email" id="email" placeholder="Enter your email">
+      <button onclick="subscribe()" class="subscribe-button">Subscribe</button>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="organizeModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2>Organize an Event</h2>
+      <form>
+        <!-- 1. Event Name -->
+        <label for="eventTitle">Event Name:</label><br>
+        <input type="text" id="eventTitle" required><br><br>
+
+        <!-- 2. Description -->
+        <label for="eventDescription">Description:</label><br>
+        <textarea id="eventDescription" name="eventDescription" rows="4" placeholder="Write a Description About your Event" required></textarea><br><br>
+
+        <!-- 3. Category -->
+        <label for="eventCategory">Category:</label><br>
+        <select id="eventCategory" required>
+          <option value="">Select Category</option>
+          <option value="Tech">Tech</option>
+          <option value="Sports">Sports Tournament</option>
+          <option value="Music">Music Festival</option>
+          <option value="Art">Art Exhibition</option>
+          <option value="Cultural">Drama Club</option>
+          <option value="Business">Entrepreneurship Summit</option>
+          <option value="Other">Other</option>
+        </select><br><br>
+
+        <!-- 4. Event Type -->
+        <label for="eventType">Event Type:</label><br>
+        <select id="eventType" required onchange="handleEventTypeChange()">
+          <option value="single-day">Single Day Event</option>
+          <option value="multi-day">Multi-Day Event</option>
+        </select><br><br>
+
+        <!-- 4. Start Date - End Date (Side by Side) -->
+        <div class="date-row">
+          <div class="form-group">
+            <label for="eventDate">Start Date:</label><br>
+            <input type="date" id="eventDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventEndDate">End Date:</label><br>
+            <input type="date" id="eventEndDate" style="display:none;" required>
+          </div>
+        </div><br>
+
+        <!-- 5. Start Time - End Time (Side by Side) -->
+        <div class="time-row">
+          <div class="form-group">
+            <label for="eventStartTime">Start Time:</label><br>
+            <input type="time" id="eventStartTime" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventEndTime">End Time:</label><br>
+            <input type="time" id="eventEndTime" required>
+          </div>
+        </div><br>
+
+        <!-- 6. Venue -->
+        <label for="eventLocation">Venue:</label><br>
+        <input type="text" id="eventLocation" required><br><br>
+
+        <!-- 7. Capacity -->
+        <label for="eventCapacity">Capacity (Number of Participants):</label><br>
+        <input type="number" id="eventCapacity" min="1" required><br><br>
+
+        <!-- 8. Upload Image -->
+        <label for="eventImage">Event Image:</label><br>
+        <input type="file" id="eventImage" accept="image/*" style="margin-top: 5px;" required><br>
+        <small style="color: #666;">Recommended size: 400x300 pixels, max 5MB</small><br><br>
+
+        <button id="submitEventBtn" type="button" style="cursor: pointer; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 16px; width: 100%; margin-top: 10px;">Submit Event</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- IMPORTANT: Add these two script tags at the end of body -->
+  <script src="Dark-Mode.js"></script>
+  <script src="api-client.js"></script>
+  <script src="Home Page.js"></script>
+  <script>
+    // Direct button click handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const submitBtn = document.getElementById('submitEventBtn');
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          console.log('🖱️ Submit button clicked!');
+          createEvent();
+        });
+      }
+    });
+  </script>
+  <script src="Animations.js"></script>
+</body>
+</html>

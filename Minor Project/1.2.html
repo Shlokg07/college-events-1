@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎓 College Events Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background: #004aad;
+      padding: 1rem;
+      color: white;
+    }
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      align-self: center;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .nav-links a,
+    .login-btn {
+      color: white;
+      text-decoration: none;
+      background: #007bff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .nav-links a:hover,
+    .login-btn:hover {
+      background: #0056b3;
+    }
+
+    /* Banner */
+    .banner {
+      text-align: left;
+      padding: 3rem;
+      background: url('Banner.jpg') no-repeat center/cover;
+      color: white;
+      height: 500px;
+    }
+    .banner h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      margin-top: 7rem;
+    }
+    .banner p {
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .explore-btn {
+      background: #007bff;
+      color: white;
+      padding: 1.5rem 2.5rem;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .explore-btn:hover {
+      background: #0056b3;
+      transform: translateY(-3px);
+    }
+
+    /* Quick Links */
+    .quick-links {
+      display: flex;
+      justify-content: space-around;
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 30%;
+      text-align: center;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Featured Events */
+    .featured {
+      text-align: center;
+      padding: 2rem;
+    }
+    .event-grid {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+    }
+    .event-card {
+      background: white;
+      padding: 0.5rem;
+      font-size: 20px;
+      border-radius: 8px;
+      width: 25%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .learn-more-btn {
+      background: #ffffff;
+      color: #000;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-size: large;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .learn-more-btn:hover {
+      background: #007bff;
+      color: #fff;
+    }
+
+    /* Subscribe */
+    .subscribe {
+      text-align: center;
+      background: #004aad;
+      color: white;
+      padding: 2rem;
+      font-size: x-large;
+    }
+    .subscribe input {
+      padding: 0.5rem;
+      margin-right: 0.5rem;
+      font-size: large;
+    }
+    .subscribe-button {
+      background: #f3f3f4;
+      color: #151515;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      font-size: large;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .subscribe-button:hover {
+      background: #007bff;
+      color: #fff;
+    }
+
+    /* Modal overlay */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Modal content */
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 40%;
+      max-width: 600px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+      animation: fadeIn 0.3s ease;
+    }
+    .close-btn {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: red;
+    }
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    input[type="file"] {
+      width: 95%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button[type="submit"] {
+      background: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button[type="submit"]:hover {
+      background: #0056b3;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    /* Blur effect only on main content */
+    .blur {
+      filter: blur(5px);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Wrap all main content -->
+  <div id="mainContent">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">College Events Web App</div>
+      <ul class="nav-links">
+        <li><a href="Home Page.html">Home</a></li>
+        <li><a href="Event Search.html">Events</a></li>
+        <li><a href="About Page.html">About</a></li>
+        <li><a href="Contact Page.html">Contact</a></li>
+        <li><button class="login-btn" onclick="window.location.href='Login Page.html'">Login</button></li>
+      </ul>
+    </nav>
+
+    <!-- Banner Section -->
+    <header class="banner">
+      <h1>Welcome to College Events Portal!</h1>
+      <p>Discover and Join Exciting Campus Events!</p>
+      <button class="explore-btn" onclick="window.location.href='Event Search.html'">Explore Events</button>
+    </header>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+      <div class="card" onclick="window.location.href='Event Search.html'">
+        <img src="Card 1.jpeg" alt="Calendar" width="120" height="120" class="icon" align="left">
+        <div>
+          <h3>Upcoming Events</h3>
+          <p>Check out the latest events on campus.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="Card 2.jpeg" alt="Registrations" width="120" height="120" class="icon" align="left">
+        <div>
+          <h3>My Registrations</h3>
+          <p>View and manage your event sign-ups.</p>
+        </div>
+      </div>
+      <div class="card" onclick="openModal()">
+       

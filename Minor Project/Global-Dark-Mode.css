@@ -1,0 +1,131 @@
+/* Global Dark Mode CSS Variables */
+/* This file should be included in all pages for consistency */
+
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-tertiary: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-tertiary: #999999;
+  --border-color: #ddd;
+  --border-light: #eeeeee;
+  --navbar-bg: linear-gradient(135deg, #3556eb 0%, #2575fc 100%);
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-text: #333333;
+  --input-border: #cccccc;
+  --button-primary: #007bff;
+  --button-hover: #0056b3;
+  --button-green: #10b981;
+  --button-green-hover: #059669;
+  --success-color: #4ade80;
+  --danger-color: #ff6b6b;
+  --warning-color: #fbbf24;
+}
+
+body.dark-mode {
+  /* Dark Mode Colors */
+  --bg-primary: #1e1e1e;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #3d3d3d;
+  --text-primary: #ffffff;
+  --text-secondary: #d0d0d0;
+  --text-tertiary: #b0b0b0;
+  --border-color: #404040;
+  --border-light: #505050;
+  --navbar-bg: linear-gradient(135deg, #003a8f 0%, #002570 100%);
+  --card-bg: #2d2d2d;
+  --input-bg: #3d3d3d;
+  --input-text: #ffffff;
+  --input-border: #505050;
+  --button-primary: #0056b3;
+  --button-hover: #004499;
+  --button-green: #059669;
+  --button-green-hover: #047857;
+  --success-color: #22c55e;
+  --danger-color: #f87171;
+  --warning-color: #facc15;
+}
+
+/* Apply variables to common elements */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body main {
+  background-color: var(--bg-primary);
+}
+
+body footer {
+  background-color: var(--bg-secondary);
+}
+
+/* Form elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea,
+select {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--input-border);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--button-primary);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Buttons */
+button {
+  background-color: var(--button-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+/* Links */
+a {
+  color: var(--button-primary);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--button-hover);
+}
+
+/* Cards and containers */
+.card,
+.modal-content {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Tables */
+table {
+  border-color: var(--border-color);
+}
+
+th {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+td {
+  border-color: var(--border-light);
+}
