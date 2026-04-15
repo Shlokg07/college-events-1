@@ -1,0 +1,53 @@
+# Node Dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Environment Variables (NEVER push real secrets!)
+.env
+.env.local
+.env.*.local
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Build & Distribution
+dist/
+build/
+out/
+
+# Logs
+logs/
+*.log
+lerna-debug.log*
+
+# Development
+.temp
+.cache
+tmp/
+
+# Optional npm cache
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Mac
+._*
